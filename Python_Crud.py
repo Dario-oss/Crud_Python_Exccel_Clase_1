@@ -196,3 +196,32 @@ while True:
             datos_actualizados['estado']='En ejecucion'
         elif estado_nuevo=='4':
             datos_actualizados['estado']='Por Aprobar'
+        elif estado_nuevo=='5':
+            now=datetime.now()
+            datos_actualizados['estado']='Finalizado'
+            datos_actualizados['Fecha finalizacion']=str(now.day) +'/'+ str(now.month) +'/'+str(now.year)
+        now = datetime.now()
+        datos_actualizados['Fecha Inicio']=str(now.day) +'/'+ str(now.month) +'/'+str(now.year)
+        Actualizar(rut,id_Actualizar, datos_actualizados)
+        print()
+    elif accion=='3':
+        datos_actualizados={'tarea':'','descripcion':'','estado':'','fecha inicio':'','fecha finalizacion':'',}
+        print('** Crear Nueva tarea **')
+
+        print()
+        print('* Titulo *')
+        print()
+        datos_actualizados['titulo']=input('Indique el Titulo de la tarea: ')
+        print()
+        print('** descripcion **')
+        datos_actualizados['estado']='En espera'
+        now=datetime.now()
+        datos_actualizados['Fecha Inicio']=str(now.day) +'/'+ str(now.month) +'/'+str(now.year)
+        datos_actualizados['Fecha Finalizacion']=''
+        agregar(rut,datos_actualizados)
+    elif accion=='4':
+        print('')
+        print('** Eliminar Tarea **')
+        iden=int(input('Indique el ID de la tarea que desea Eliminar: '))
+        borrar(rut,iden)
+        
