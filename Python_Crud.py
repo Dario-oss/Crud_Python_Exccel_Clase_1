@@ -2,7 +2,6 @@ from datetime import datetime
 from openpyxl import load_workbook
 
 rut="C:\\Users\\SENA\Desktop\\Python_Excel\\Base_Crud.xlsx"
-rut=r"C:\Users\SENA\Desktop\Python_Excel\Base_Crud.xlsx"
 
 def leer(ruta:str,extraer:str):
     Archivo_Exccel = load_workbook(ruta)
