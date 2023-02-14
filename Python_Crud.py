@@ -1,7 +1,7 @@
 from datetime import datetime
 from openpyxl import load_workbook
 
-rut="C:\\Users\\SENA\Desktop\\Python_Excel\\Base_Crud.xlsx"
+ruta="C:\\Users\\SENA\Desktop\\Python_Excel\\Base_Crud.xlsx"
 
 def leer(ruta:str,extraer:str):
     Archivo_Exccel = load_workbook(ruta)
@@ -69,7 +69,7 @@ def Actualizar(ruta:str,identificador:int,datos_actualizados:dict):
 
 def agregar(ruta:int,datos:dict):
     Archivo_Exccel = load_workbook(ruta)
-    Hoja_datos = Archivo_Exccel['Datos_crud']
+    Hoja_datos = Archivo_Exccel['Datos_Crud']
     Hoja_datos = Hoja_datos['A2':'F'+str(Hoja_datos.max_row+1)]
     hoja=Archivo_Exccel.active
 
@@ -121,7 +121,7 @@ def borrar(ruta,identificador):
         print()
     return
 
-rut="C:\\Users\\SENA\Desktop\\Python_Excel\\Base_Crud.xlsx"
+
 
 datos_actualizados={'titulo':'','descripcion':'','estado':'','Fecha Inicio':'','Fecha Finalizacion':''}
 while True:
@@ -147,27 +147,27 @@ while True:
             print()
             print()
             print('*** Consultando todas las tareas **')
-            leer(rut,'todo')
+            leer(ruta,'todo')
         elif opc_consulta=='2':
             print()
             print()
             print('*** Consultando tareas en espera')
-            leer(rut,'en espera')
+            leer(ruta,'en espera')
         elif opc_consulta=='3':
             print()
             print()
             print('*** Consultando tareas en ejecucion **')
-            leer(rut,'por aprobar')
+            leer(ruta,'por aprobar')
         elif opc_consulta=='4':
             print()
             print()
             print('*** Consultando tareas por acbar **')
-            leer(rut,'por aprobar')
+            leer(ruta,'por aprobar')
         elif opc_consulta=='5':
             print()
             print()
             print('*** Consultando tareas finalizadas **')
-            leer(rut,'finalizada')
+            leer(ruta,'finalizada')
     elif accion=='2':
         datos_actualizados={'titulo':'','descripcion':'','estado':'','Fecha inicio':'','Fecha finalizacion':''}
         print('** Actualizar tarea **')
@@ -201,10 +201,10 @@ while True:
             datos_actualizados['Fecha finalizacion']=str(now.day) +'/'+ str(now.month) +'/'+str(now.year)
         now = datetime.now()
         datos_actualizados['Fecha Inicio']=str(now.day) +'/'+ str(now.month) +'/'+str(now.year)
-        Actualizar(rut,id_Actualizar, datos_actualizados)
+        Actualizar(ruta,id_Actualizar, datos_actualizados)
         print()
     elif accion=='3':
-        datos_actualizados={'tarea':'','descripcion':'','estado':'','fecha inicio':'','fecha finalizacion':'',}
+        datos_actualizados={'tarea':'','descripcion':'','estado':'','Fecha Inicio':'','Fecha Finalizacion':'',}
         print('** Crear Nueva tarea **')
 
         print()
@@ -213,14 +213,16 @@ while True:
         datos_actualizados['titulo']=input('Indique el Titulo de la tarea: ')
         print()
         print('** descripcion **')
+        datos_actualizados['descripcion']=input('Indique la descripcion la tarea: ')
+        print()
         datos_actualizados['estado']='En espera'
         now=datetime.now()
-        datos_actualizados['Fecha Inicio']=str(now.day) +'/'+ str(now.month) +'/'+str(now.year)
+        datos_actualizados['Fecha Inicio']=str(now.day) +'/'+ str(now.month) +'/'+ str(now.year)
         datos_actualizados['Fecha Finalizacion']=''
-        agregar(rut,datos_actualizados)
+        agregar(ruta,datos_actualizados)
     elif accion=='4':
         print('')
         print('** Eliminar Tarea **')
         iden=int(input('Indique el ID de la tarea que desea Eliminar: '))
-        borrar(rut,iden)
+        borrar(ruta,iden)
         
